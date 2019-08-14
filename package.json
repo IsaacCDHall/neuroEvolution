@@ -1,0 +1,20 @@
+{
+  "name": "flappy-starter",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --port 6969 --content-base src/ --mode development",
+    "build": "webpack --config webpack.config.js --mode production",
+    "build.prod": "webpack --config webpack.config.js -p"
+  },
+  "dependencies": {
+    "@tensorflow/tfjs": "^1.2.5",
+    "@types/node": "^12.0.8",
+    "@types/p5": "^0.7.2",
+    "p5": "^0.8.0",
+    "source-map-loader": "^0.2.4",
+    "webpack": "^4.34.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.2"
+  }
+}
