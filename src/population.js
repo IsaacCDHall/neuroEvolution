@@ -16,7 +16,7 @@ export class Population {
     nextGen() {
         this.generation++;
         this.calcNormFitness();
-        var newDnas = this.birds.map(entity => {
+        var newDnas = this.birds.map(bird => {
             var a = this.randomWeighted();
             var b = this.randomWeighted();
             // console.log('nextGen: a=%o, b=%o', a,b);

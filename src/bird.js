@@ -15,7 +15,7 @@ export class Bird {
         this.pos = startPos.copy();
         this.vel = p5.createVector(this.speed, 0); //p5.random(-1,1));
         this.acc = p5.createVector(0, this.gravity);
-        this.brain = new Brain(2, 4, 1);
+        this.brain = new Brain(2, 5, 1);
         // var weights = this.brain.getWeights();
         // this.brain.setWeights(weights);
         this.dna = new Dna(this.brain.getWeights().length);
@@ -52,8 +52,12 @@ export class Bird {
     update() {
         if (!this.alive)
             return;
-        if (this.player && p5.keyIsDown(32))
-            this.flap();
+        if (
+          (this.player && p5.keyIsDown(32)) ||
+          (this.player && p5.keyIsDown(13)) ||
+          (this.player && p5.keyIsDown(38))
+        )
+          this.flap();
         this.vel.add(this.acc);
         this.pos.add(this.vel);
         if (this.pos.y < 0 || this.pos.y >= p5.height)
@@ -93,8 +97,8 @@ export class Bird {
         this.brain.setWeights(this.dna.values);
     }
     calcFitness() {
-        this.fitness = this.pos.x / p5.width;
-        this.fitness = Math.pow(this.fitness, 3);
+        this.fitness = (this.pos.x / p5.width) * (this.pos.x / p5.width);
+        console.log (this.fitness)
         return this.fitness;
     }
 }

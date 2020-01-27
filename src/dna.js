@@ -17,7 +17,7 @@ export class Dna {
 
         return child;
     }
-    mutate(rate = 0.01, size = 0.25) {
+    mutate(rate = 0.05, size = 0.175) {
         this.values = this.values.map(value => {
             if (random() < rate) {
                 value += random(-size, size);

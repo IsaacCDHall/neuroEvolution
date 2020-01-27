@@ -17,14 +17,11 @@ new P5((p5) => {
         p5.background(0);
         globalAny.p5 = p5; // Hacky way to make p5 global...
         globalAny.tf = tf;
-        pop = new Population(100);
+        pop = new Population(99);
         // Single player
         player = new Bird(p5.createVector(25, p5.height / 2 + 50));
         player.player = true;
-        p5.keyPressed = () => {
-            if (p5.keyCode === 32)
-                player.flap();
-        };
+       
         // Create pipes
         var spacing = 150;
         for (var i = 0; i < 100; i++) {
@@ -67,7 +64,7 @@ new P5((p5) => {
             pop.bestDist = bestBird.pos.x;
         if (pop.birds.every(b => !b.alive) && (!player || !player.alive)) {
             pop.calcFitness();
-            console.log('best dna: %o', pop.birds.sort((a, b) => b.pos.x - a.pos.x)[0].dna.values);
+            console.log('best dna:', pop.birds.sort((a, b) => b.pos.x - a.pos.x)[0].dna.values);
             // pop.size = +popSizeSlider.value();
             pop.nextGen();
             if (player)
@@ -83,11 +80,12 @@ new P5((p5) => {
             bestEver: pop.bestDist
         };
         var html = '';
-        html += `gen: ${pop.generation}<br>`;
-        html += `birds: ${stats.birds}<br>`;
-        html += `alive: ${stats.alive}<br>`;
+        html += `Generation: ${pop.generation}<br>`;
+        html += `Total: ${stats.birds} -`;
+        html += ` Remaining: ${stats.alive}<br>`;
         html += `current best: ${stats.bestCur}<br>`;
         html += `best ever: ${stats.bestEver}<br>`;
+        html += `Use the space bar to control blue character, refresh page to start new trial`;
         statsEl.html(html);
     };
 });
